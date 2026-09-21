@@ -2,6 +2,9 @@
 @font-face{font-family:"Source Serif 4";src:url("fonts/SourceSerif4-It.otf.woff2") format("woff2");font-weight:400;font-style:italic;font-display:swap}
 :root{--paper:#f7f6f0;--ink:#292c26;--cloth:#7d8572;--book-serif:"Source Serif 4","Songti SC","Noto Serif CJK SC",Georgia,serif;--book-sans:Arial,Helvetica,sans-serif}
 .art-page{container-type:inline-size;position:relative;aspect-ratio:var(--page-ratio, .8);overflow:hidden;background:var(--paper) url("paper-grain.svg") repeat;color:var(--ink);font-family:var(--book-serif);font-weight:400}
+/* Spine shadow: deeper crease at the binding edge */
+.book-page.art-page.--left::after{content:"";position:absolute;inset-block:0;right:0;z-index:4;width:clamp(3px,1.2%,8px);pointer-events:none;background:linear-gradient(to left,rgb(20 22 18 / 22%),rgb(20 22 18 / 6%) 60%,transparent)}
+.book-page.art-page.--right::after{content:"";position:absolute;inset-block:0;left:0;z-index:4;width:clamp(3px,1.2%,8px);pointer-events:none;background:linear-gradient(to right,rgb(20 22 18 / 22%),rgb(20 22 18 / 6%) 60%,transparent)}
 .art-page img{display:block;object-fit:contain;filter:none;border:0;border-radius:0;box-shadow:none}
 .art-page .plate{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);width:74%;height:72%;margin:0;display:flex;align-items:center;justify-content:center}
 .art-page .plate img{width:100%;height:100%;object-fit:contain}
@@ -29,6 +32,6 @@
 .art-page .colophon .small-print{font:400 1.7cqw/1.65 var(--book-sans);color:#6f7268}
 .art-page .back-mark{position:absolute;bottom:10%;left:13.5%;font:400 2cqw/1.4 var(--book-serif)}
 /* The material is a background, so it never changes the photograph's pixels. */
-.book-page.art-page::after{content:none}
-.book-page.art-page.--left::before{background:linear-gradient(to left,rgb(28 30 24 / 12%),rgb(28 30 24 / 3%) 40%,transparent)}
-.book-page.art-page.--right::before{background:linear-gradient(to right,rgb(28 30 24 / 12%),rgb(28 30 24 / 3%) 40%,transparent)}
+.book-page.art-page:not(.--left):not(.--right)::after{content:none}
+.book-page.art-page.--left::before{background:linear-gradient(to left,rgb(28 30 24 / 18%),rgb(28 30 24 / 5%) 30%,transparent 75%)}
+.book-page.art-page.--right::before{background:linear-gradient(to right,rgb(28 30 24 / 18%),rgb(28 30 24 / 5%) 30%,transparent 75%)}
